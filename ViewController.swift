@@ -8,17 +8,48 @@
 
 import UIKit
 
+extension UIColor {
+    static func random() -> UIColor {
+        return UIColor(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1), alpha: 1.0)
+    }
+}
+
+struct Item {
+    var color: UIColor
+}
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var myCollectionView: UICollectionView!
+    
+    var items = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        for _ in 0...19 {
+            addItem()
+        }
+        
+        myCollectionView.delegate = self
+        myCollectionView.dataSource = self
     }
-
-
+    
+    func addItem() {
+        items.append(Item(color: .random()))
+    }
+    
 }
 
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+    }
+    
+    
+}
