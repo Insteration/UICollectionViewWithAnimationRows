@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    var items = [Item]()
+    private var items = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,12 @@ class ViewController: UIViewController {
         myCollectionView.dataSource = self
     }
     
-    func addItem() {
+    @IBAction func addItem(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    
+    private func addItem() {
         items.append(Item(color: .random()))
     }
     
@@ -48,7 +53,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath)
+        cell.contentView.backgroundColor = items[indexPath.item].color
+        return cell
     }
     
     
