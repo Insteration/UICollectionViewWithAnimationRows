@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
+        
+        myCollectionView.setCollectionViewLayout(CustomFlowLayout(), animated: false)
     }
     
     @IBAction func addItem(_ sender: UIBarButtonItem) {
@@ -97,7 +99,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         if insertingIndexPaths.contains(itemIndexPath) {
             attributes?.alpha = 0.0
-            attributes?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//            attributes?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1) // respawn inside of cell
+            attributes?.transform = CGAffineTransform(translationX: 0, y: 500) // drop from bottom
         }
         
         return attributes
