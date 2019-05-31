@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for _ in 0...19 {
+        for _ in 0...10 {
             addItem()
         }
         
@@ -37,7 +37,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addItem(_ sender: UIBarButtonItem) {
-        
+        addItem()
+        let indexPath = IndexPath(item: self.items.count - 1, section: 0)
+        print("Index path is - \(indexPath)")
+        myCollectionView.performBatchUpdates({
+            self.myCollectionView.insertItems(at: [indexPath])
+        }, completion: nil)
     }
     
     
@@ -48,6 +53,11 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -59,4 +69,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     
+}
+
+
+class CustomFlowLayout: UICollectionViewFlowLayout {
+    var instertingIndexPaths = [IndexPath]()
 }
