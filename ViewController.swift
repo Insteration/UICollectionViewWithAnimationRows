@@ -56,9 +56,9 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -74,6 +74,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 class CustomFlowLayout: UICollectionViewFlowLayout {
+    
     var insertingIndexPaths = [IndexPath]()
     
     override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
