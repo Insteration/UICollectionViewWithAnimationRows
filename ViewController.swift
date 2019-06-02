@@ -18,12 +18,13 @@ struct Item {
     var color: UIColor
 }
 
+var items = [Item]()
+
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
-    private var items = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
     
     @IBAction func addItem(_ sender: UIBarButtonItem) {
         addItem()
-        let indexPath = IndexPath(item: self.items.count - 1, section: 0)
+        let indexPath = IndexPath(item: items.count - 1, section: 0)
         print("Index path is - \(indexPath)")
         myCollectionView.performBatchUpdates({
             self.myCollectionView.insertItems(at: [indexPath])
@@ -105,5 +106,21 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         }
         
         return attributes
+    }
+}
+
+
+// MARK: Small squares
+
+class SmallViewController: UICollectionViewController {
+    init() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50, height: 50)
+        super.init(collectionViewLayout: layout)
+        items = (0...50).map { _ in Item(color: .random()) }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
