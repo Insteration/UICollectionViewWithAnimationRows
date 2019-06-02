@@ -108,19 +108,3 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
 }
-
-
-// MARK: Small squares
-
-class SmallViewController: UICollectionViewController {
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 50, height: 50)
-        super.init(collectionViewLayout: layout)
-        items = (0...50).map { _ in Item(color: .random()) }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
